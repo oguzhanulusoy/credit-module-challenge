@@ -34,26 +34,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
-    // Services
-    private final AuthenticationService authenticationService;
-    private final AuthorizationService authorizationService;
-    private final MessageService messageService;
-
-    // Others
-    @PersistenceContext
-    private EntityManager entityManager;
-    private final AuthenticationManager authenticationManager;
-    private final PasswordEncoder passwordEncoder;
-
-    // Repositories
-    private final UserRepository userRepository;
-
     // Message codes
     private static final String MSG_ENTITY_NOT_FOUND = "user.entity.not.found";
     private static final String MSG_USER_CANNOT_ASSIGN_ROLE = "user.cannot.assign.role";
     private static final String MSG_USER_CANNOT_DELETE = "user.cannot.delete";
     private static final String MSG_USER_ALREADY_EXIST = "user.already.exist";
     private static final String MSG_ID_CANNOT_BE_NULL = "id.cannot.be.null";
+    // Services
+    private final AuthenticationService authenticationService;
+    private final AuthorizationService authorizationService;
+    private final MessageService messageService;
+    private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder passwordEncoder;
+    // Repositories
+    private final UserRepository userRepository;
+    // Others
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Transactional(rollbackOn = Exception.class)
     public void createUser(UserCreateRequestDTO userCreateRequestDTO) throws InvalidRequestException {

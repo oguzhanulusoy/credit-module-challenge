@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 public class MessageService {
 
     @Autowired
-    private MessageSource messageSource;
-
-    @Autowired
     HttpServletRequest req;
+    @Autowired
+    private MessageSource messageSource;
 
     public String getMessage(String code) {
         return messageSource.getMessage(code, null, CommonUtils.getLocaleFromRequest(req));
