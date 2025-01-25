@@ -89,7 +89,6 @@ public class UserController {
     @PreAuthorize("isAuthenticated() and @authorizationService.isAdmin()")
     public ResponseEntity<GenericResponse<Void>> setRole(@Valid @RequestBody UserRequest userRequest) throws InvalidRequestException, EntityNotFoundException {
         UserRequestDTO userRequestDTO = userObjectToDTOMapper.toDTO(userRequest);
-        boolean result = userService.setRole(userRequestDTO);
         if (userService.setRole(userRequestDTO)) {
             return ResponseEntity.status(Integer.valueOf(CommonResponses.CODE_204)).body(GenericResponse.success());
         }

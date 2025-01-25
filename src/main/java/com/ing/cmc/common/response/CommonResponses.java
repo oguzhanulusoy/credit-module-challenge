@@ -13,7 +13,15 @@ public class CommonResponses {
     public static final String CODE_400 = "400";
     public static final String DESC_400 = "Bad request";
 
+    // HttpStatus.FORBIDDEN
+    public static final String CODE_403 = "403";
+    public static final String DESC_403 = "Forbidden";
+
     // HttpStatus.NOT_FOUND
     public static final String CODE_404 = "404";
     public static final String DESC_404 = "Not found";
+
+    // HttpStatus.INTERNAL_SERVER_ERROR
+    public static final String CODE_500 = "500";
+    public static final String DESC_500 = "Internal server error";
 }

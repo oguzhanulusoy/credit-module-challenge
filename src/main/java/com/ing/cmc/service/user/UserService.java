@@ -163,7 +163,7 @@ public class UserService {
         }
         try {
             User user = getUser(userRequestDTO.getId());
-            user.setEnabled(true);
+            user.setEnabled(false);
             userRepository.save(user);
             return true;
         } catch (Exception exception) {
