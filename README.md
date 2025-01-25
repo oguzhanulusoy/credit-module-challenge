@@ -4,6 +4,16 @@
 
 ------------------------------------------------------------------------------------------
 
+#### Multi-language Support
+
+- This application supports multi-language. Default is English (EN).
+- If Accept-Language exists, while empty, it is default (English)
+- If Accept-Language exists, while EN, it is English
+- If Accept-Language exists, while TR, it is Turkish
+- messages_x.properties can be created to multiply keys in messages.properties (where x is language code such as IT, ES, FR).
+
+------------------------------------------------------------------------------------------
+
 #### User
 
 <details>
