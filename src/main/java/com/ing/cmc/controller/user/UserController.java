@@ -45,10 +45,9 @@ public class UserController {
     @PostMapping("/create")
     @Operation(summary = "Registration", description = "Need user model")
     @CmcSuccessApiResponses_200
-    public ResponseEntity<GenericResponse<Void>> createUser(@Valid @RequestBody UserCreateRequest userCreateRequest) {
+    public ResponseEntity<GenericResponse<Void>> createUser(@Valid @RequestBody UserCreateRequest userCreateRequest) throws InvalidRequestException {
         UserCreateRequestDTO userCreateRequestDTO = userObjectToDTOMapper.toDTO(userCreateRequest);
         userService.createUser(userCreateRequestDTO);
-        //UserRegisterResponse result = userDTOtoResponseMapper.fromDTO(userResponseDTO);
         return ResponseEntity.status(Integer.valueOf(CommonResponses.CODE_200)).body(GenericResponse.success());
     }
 

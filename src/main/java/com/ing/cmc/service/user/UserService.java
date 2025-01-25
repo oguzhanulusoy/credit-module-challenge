@@ -52,9 +52,13 @@ public class UserService {
     private static final String MSG_ENTITY_NOT_FOUND = "user.entity.not.found";
     private static final String MSG_USER_CANNOT_ASSIGN_ROLE = "user.cannot.assign.role";
     private static final String MSG_USER_CANNOT_DELETE = "user.cannot.delete";
+    private static final String MSG_USER_ALREADY_EXIST = "user.already.exist";
 
     @Transactional(rollbackOn = Exception.class)
-    public void createUser(UserCreateRequestDTO userCreateRequestDTO) {
+    public void createUser(UserCreateRequestDTO userCreateRequestDTO) throws InvalidRequestException {
+        if (userRepository.existsByUsername(userCreateRequestDTO.getUsername()) || userRepository.existsByEmail(userCreateRequestDTO.getEmail())) {
+            throw new InvalidRequestException(messageService.getMessage(MSG_USER_ALREADY_EXIST), null);
+        }
         try {
             User user = User.builder()
                     .email(userCreateRequestDTO.getEmail())
