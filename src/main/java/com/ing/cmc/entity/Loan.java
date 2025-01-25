@@ -32,12 +32,12 @@ public class Loan {
     @Column
     private int numberOfInstallments;
 
+    @Column
+    private boolean isPaid;
+
     @CreationTimestamp
     private LocalDate createdDate;
 
     @UpdateTimestamp
     private LocalDate lastModifiedDate;
-
-    @Column
-    private boolean isPaid;
 }
