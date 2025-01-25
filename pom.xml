@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ing</groupId>
 	<artifactId>cmc</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1-SNAPSHOT</version>
 	<name>cmc</name>
 	<description>Credit module challenge</description>
 	<url/>
