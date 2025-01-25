@@ -93,3 +93,51 @@
 > ```
 
 </details>
+
+#### Customer
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>To create customer</code></summary>
+
+##### Example cURL
+
+> ```javascript
+> curl --location 'localhost:8080/customer/create' --header 'Content-Type: application/json' --header 'Accept-Language;' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90YyIsImlhdCI6MTczNzgyODg4NCwiZXhwIjoxNzY5MzY0ODg0fQ.d89CdxEy4b4Ux2XJTPSpiBC1hDAau2MbZK5tpU49crg' --data '{"name": "customer1_name","surname": "customer1_surname","userId": "1","creditLimit": "10000","usedCreditLimit": "1500"}'
+> ```
+
+</details>
+
+<details>
+ <summary><code>GET</code> <code><b>/</b></code> <code>To list customers</code></summary>
+
+##### Example cURL
+
+> ```javascript
+> curl --location 'localhost:8080/customer/list' --header 'Content-Type: application/json' --header 'Accept-Language;' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90YyIsImlhdCI6MTczNzgyODg4NCwiZXhwIjoxNzY5MzY0ODg0fQ.d89CdxEy4b4Ux2XJTPSpiBC1hDAau2MbZK5tpU49crg'
+> ```
+
+</details>
+
+<details>
+ <summary><code>PUT</code> <code><b>/</b></code> <code>To list customers</code></summary>
+
+##### Example cURL
+
+> ```javascript
+> curl --location --request PUT 'localhost:8080/customer/update' --header 'Content-Type: application/json' --header 'Accept-Language;' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90YyIsImlhdCI6MTczNzgyODg4NCwiZXhwIjoxNzY5MzY0ODg0fQ.d89CdxEy4b4Ux2XJTPSpiBC1hDAau2MbZK5tpU49crg' --data '{"id": 1,"name": "customer1_name","surname": "customer1_surname","creditLimit": "20000","usedCreditLimit": "1500"}'
+> ```
+
+</details>
+
+#### Loan
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>To create customer</code></summary>
+
+##### Example cURL
+
+> ```javascript
+> curl --location 'localhost:8080/customer/create' --header 'Content-Type: application/json' --header 'Accept-Language;' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90YyIsImlhdCI6MTczNzgyODg4NCwiZXhwIjoxNzY5MzY0ODg0fQ.d89CdxEy4b4Ux2XJTPSpiBC1hDAau2MbZK5tpU49crg' --data '{"name": "customer1_name","surname": "customer1_surname","userId": "1","creditLimit": "10000","usedCreditLimit": "1500"}'
+> ```
+
+</details>
