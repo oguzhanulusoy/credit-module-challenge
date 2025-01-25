@@ -53,6 +53,7 @@ public class UserService {
     private static final String MSG_USER_CANNOT_ASSIGN_ROLE = "user.cannot.assign.role";
     private static final String MSG_USER_CANNOT_DELETE = "user.cannot.delete";
     private static final String MSG_USER_ALREADY_EXIST = "user.already.exist";
+    private static final String MSG_ID_CANNOT_BE_NULL = "id.cannot.be.null";
 
     @Transactional(rollbackOn = Exception.class)
     public void createUser(UserCreateRequestDTO userCreateRequestDTO) throws InvalidRequestException {
@@ -101,7 +102,14 @@ public class UserService {
         return userResponseDTOList;
     }
 
-    public UserResponseDTO getUser(UserRequestDTO userRequestDTO) {
+    public void checkIfIdExists(Long id) throws InvalidRequestException {
+        if (id == null || id == 0) {
+            throw new InvalidRequestException(messageService.getMessage(MSG_ID_CANNOT_BE_NULL), null);
+        }
+    }
+
+    public UserResponseDTO getUser(UserRequestDTO userRequestDTO) throws InvalidRequestException {
+        checkIfIdExists(userRequestDTO.getId());
         try {
             return convertUserToUserResponseDTO(getUser(userRequestDTO.getId()));
         } catch (Exception exception) {
@@ -128,6 +136,7 @@ public class UserService {
 
     @Transactional(rollbackOn = Exception.class)
     public boolean setRole(UserRequestDTO userRequestDTO) throws InvalidRequestException {
+        checkIfIdExists(userRequestDTO.getId());
         if (getUser(authorizationService.getSessionUsername()).getId().equals(userRequestDTO.getId())) {
             throw new InvalidRequestException(messageService.getMessage(MSG_USER_CANNOT_ASSIGN_ROLE), null);
         }
@@ -145,7 +154,8 @@ public class UserService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public UserResponseDTO updateUser(UserUpdateRequestDTO userUpdateRequestDTO) {
+    public UserResponseDTO updateUser(UserUpdateRequestDTO userUpdateRequestDTO) throws InvalidRequestException {
+        checkIfIdExists(userUpdateRequestDTO.getId());
         try {
             User user = getUser(userUpdateRequestDTO.getId());
             user.setUsername(userUpdateRequestDTO.getUsername());
@@ -162,6 +172,7 @@ public class UserService {
 
     @Transactional(rollbackOn = Exception.class)
     public boolean deleteUserLogical(UserRequestDTO userRequestDTO) throws InvalidRequestException {
+        checkIfIdExists(userRequestDTO.getId());
         if (getUser(authorizationService.getSessionUsername()).getId().equals(userRequestDTO.getId())) {
             throw new InvalidRequestException(messageService.getMessage(MSG_USER_CANNOT_DELETE), null);
         }
@@ -178,6 +189,7 @@ public class UserService {
 
     @Transactional(rollbackOn = Exception.class)
     public boolean deleteUserHard(UserRequestDTO userRequestDTO) throws InvalidRequestException {
+        checkIfIdExists(userRequestDTO.getId());
         if (getUser(authorizationService.getSessionUsername()).getId().equals(userRequestDTO.getId())) {
             throw new InvalidRequestException(messageService.getMessage(MSG_USER_CANNOT_DELETE), null);
         }

@@ -26,8 +26,8 @@ import java.util.List;
 @Tag(name = "Loan", description = "Loan API documentation")
 public class LoanController {
 
-    private final LoanService loanService;
     private final AuthorizationService authorizationService;
+    private final LoanService loanService;
     private final LoanDTOtoObjectMapper loanDTOtoObjectMapper;
     private final LoanObjectToDTOMapper loanObjectToDTOMapper;
 

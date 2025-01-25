@@ -75,7 +75,7 @@ public class UserController {
     @Operation(summary = "Get", description = "Get specific user per id")
     @CmcSuccessApiResponses_200_204
     @PreAuthorize("isAuthenticated() and @authorizationService.isAdmin()")
-    public ResponseEntity<GenericResponse<UserResponse>> getUser(@RequestBody UserRequest userRequest) throws EntityNotFoundException {
+    public ResponseEntity<GenericResponse<UserResponse>> getUser(@RequestBody UserRequest userRequest) throws EntityNotFoundException, InvalidRequestException {
         UserRequestDTO userRequestDTO = userObjectToDTOMapper.toDTO(userRequest);
         UserResponseDTO userResponseDTO = userService.getUser(userRequestDTO);
         UserResponse result = userDTOtoObjectMapper.fromDTO(userResponseDTO);
@@ -98,7 +98,7 @@ public class UserController {
     @Operation(summary = "Update", description = "Update username and email")
     @CmcSuccessApiResponses_200
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<GenericResponse<UserResponse>> updateUser(@Valid @RequestBody UserUpdateRequest userUpdateRequest) throws EntityNotFoundException {
+    public ResponseEntity<GenericResponse<UserResponse>> updateUser(@Valid @RequestBody UserUpdateRequest userUpdateRequest) throws EntityNotFoundException, InvalidRequestException {
         UserUpdateRequestDTO userUpdateRequestDTO = userObjectToDTOMapper.toDTO(userUpdateRequest);
         UserResponseDTO userResponseDTO = userService.updateUser(userUpdateRequestDTO);
         UserResponse result = userDTOtoObjectMapper.fromDTO(userResponseDTO);
