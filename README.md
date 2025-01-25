@@ -142,3 +142,24 @@
 
 </details>
 
+<details>
+ <summary><code>GET</code> <code><b>/</b></code> <code>To list loan of specific customer</code></summary>
+
+##### Example cURL
+
+> ```javascript
+> curl --location --request GET 'localhost:8080/loan/list' --header 'Content-Type: application/json' --header 'Accept-Language;' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90Y191cGRhdGUiLCJpYXQiOjE3Mzc4MzE0NzEsImV4cCI6MTc2OTM2NzQ3MX0.e3hgaKhN1JoveEUs-YE-RKtVx9XPUuMRJgCjyGtBZ38' --data '{"customerId": 1 }'
+> ```
+
+</details>
+
+<details>
+ <summary><code>GET</code> <code><b>/</b></code> <code>To list loan installment of specific loan</code></summary>
+
+##### Example cURL
+
+> ```javascript
+> curl --location --request GET 'localhost:8080/loan/list-installments' --header 'Content-Type: application/json' --header 'Accept-Language;' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90Y191cGRhdGUiLCJpYXQiOjE3Mzc4MzE0NzEsImV4cCI6MTc2OTM2NzQ3MX0.e3hgaKhN1JoveEUs-YE-RKtVx9XPUuMRJgCjyGtBZ38' --data '{"loanId": 1 }'
+> ```
+
+</details>
