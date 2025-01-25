@@ -1,0 +1,4 @@
+For conversion object to DTO (in both way), mapstruct (3rd party solution) is used.
+From controller to service: object to DTO conversion
+From service to controller: DTO to object conversion
+So that, client cannot reach out more information about application or database

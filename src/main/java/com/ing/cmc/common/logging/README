@@ -1,0 +1,4 @@
+While logging HTTP requests and responses (from/to client), interceptor and adapter/filter are used.
+Due to request body limitations, adapter/filter is necessary to capture pay load.
+If interceptor has been consumed for obtaining payload on request body, http servlet object is lost.
+So, adapter/filter is being used for incoming requests.
