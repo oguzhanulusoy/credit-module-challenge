@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cmc
+  jpa:
+    hibernate:
+      ddl-auto: update # options: create-drop, drop, update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+    defer-datasource-initialization: true
+security:
+  require-ssl: true
+  jwt:
+    secret: "64xCharsForCmc64xCharsForCmc64xCharsForCmc64xChar"
+springdoc:
+  swagger-ui:
+    path: "/swagger-ui.html"
+    status: false
