@@ -3,7 +3,6 @@ package com.ing.cmc.service.customer;
 import com.ing.cmc.common.exception.ExceptionLogger;
 import com.ing.cmc.common.exception.InvalidRequestException;
 import com.ing.cmc.entity.Customer;
-import com.ing.cmc.entity.User;
 import com.ing.cmc.repository.CustomerRepository;
 import com.ing.cmc.service.authentication.AuthenticationService;
 import com.ing.cmc.service.authorization.AuthorizationService;
