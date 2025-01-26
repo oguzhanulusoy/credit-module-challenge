@@ -15,13 +15,11 @@ import lombok.NoArgsConstructor;
 public class UserUpdateRequest {
     @NotNull
     private Long id;
-
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Username cannot be null")
+    @NotBlank(message = "Username cannot be blank")
     private String username;
-
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Email cannot be null")
+    @NotBlank(message = "Email cannot be blank")
     @Email
     private String email;
 }

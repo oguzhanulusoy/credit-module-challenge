@@ -24,10 +24,10 @@ public class ClientLoggingUtils {
             if (e != null) {
                 while (e.hasMoreElements()) {
                     String curr = (String) e.nextElement();
-                    if (curr.contains("password") || curr.contains("answer") || curr.contains("pwd")) {
+                    if (curr.contains("password") || curr.contains("pwd")) {
                         logData.put(curr, "*****");
                     } else {
-                        if (!request.getParameter(curr).isEmpty() && !request.getParameter(curr).isBlank()) { // TODO
+                        if (!request.getParameter(curr).isEmpty() && !request.getParameter(curr).isBlank()) {
                             logData.put(curr, request.getParameter(curr));
                         }
                     }

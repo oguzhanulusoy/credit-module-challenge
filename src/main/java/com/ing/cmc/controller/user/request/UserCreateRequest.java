@@ -13,16 +13,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateRequest {
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Username cannot be null")
+    @NotBlank(message = "Username cannot be blank")
     private String username;
-
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Password cannot be null")
+    @NotBlank(message = "Password cannot be blank")
     private String password;
-
-    @NotNull(message = "bos")
-    @NotBlank(message = "bos")
+    @NotNull(message = "Email cannot be null")
+    @NotBlank(message = "Email cannot be blank")
     @Email
     private String email;
 }

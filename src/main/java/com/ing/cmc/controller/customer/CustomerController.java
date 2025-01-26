@@ -18,6 +18,7 @@ import com.ing.cmc.service.customer.response.CustomerResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,8 +41,7 @@ public class CustomerController {
     @Operation(summary = "Create", description = "Create customer")
     @CmcSuccessApiResponses_200
     @PreAuthorize("isAuthenticated() and @authorizationService.isAdmin()")
-    public ResponseEntity<GenericResponse<CustomerResponse>> createCustomer(
-            @RequestBody CustomerCreateRequest customerCreateRequest) throws InvalidRequestException {
+    public ResponseEntity<GenericResponse<CustomerResponse>> createCustomer(@Valid @RequestBody CustomerCreateRequest customerCreateRequest) throws InvalidRequestException {
         CustomerCreateRequestDTO customerCreateRequestDTO = customerObjectToDTOMapper.toDTO(customerCreateRequest);
         CustomerResponseDTO customerResponseDTO = customerService.createCustomer(customerCreateRequestDTO);
         CustomerResponse result = customerDTOtoObjectMapper.fromDTO(customerResponseDTO);
@@ -65,8 +65,7 @@ public class CustomerController {
     @Operation(summary = "Update", description = "Update customer")
     @CmcSuccessApiResponses_200
     @PreAuthorize("isAuthenticated() and @authorizationService.isAdmin()")
-    public ResponseEntity<GenericResponse<CustomerResponse>> updateCustomer(
-            @RequestBody CustomerUpdateRequest customerUpdateRequest) throws InvalidRequestException {
+    public ResponseEntity<GenericResponse<CustomerResponse>> updateCustomer(@Valid @RequestBody CustomerUpdateRequest customerUpdateRequest) throws InvalidRequestException {
         CustomerUpdateRequestDTO customerUpdateRequestDTO = customerObjectToDTOMapper.toDTO(customerUpdateRequest);
         CustomerResponseDTO customerResponseDTO = customerService.updateCustomer(customerUpdateRequestDTO);
         CustomerResponse result = customerDTOtoObjectMapper.fromDTO(customerResponseDTO);

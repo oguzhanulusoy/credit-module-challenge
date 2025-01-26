@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PUBLIC)
 public class UserResponseDTO {
     private Long id;
     private String username;

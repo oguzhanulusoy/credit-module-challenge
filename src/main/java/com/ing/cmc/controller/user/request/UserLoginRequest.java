@@ -12,11 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginRequest {
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Username cannot be null")
+    @NotBlank(message = "Username cannot be blank")
     private String username;
-
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Password cannot be null")
+    @NotBlank(message = "Password cannot be blank")
     private String password;
 }

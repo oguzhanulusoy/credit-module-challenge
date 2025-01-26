@@ -30,7 +30,6 @@ public class ClientLoggingInterceptor implements HandlerInterceptor {
                 logData.put("Protocol", request.getProtocol());
                 logData.put("Locale", request.getLocale());
                 logData.put("Content-Type", request.getContentType());
-                // logData.put("Headers", request.getHeaderNames()); TODO
                 String jsonLog = objectMapper.writeValueAsString(logData);
                 logger.info("[ClientLoggingInterceptor.preHandle] " + jsonLog);
             } catch (Exception ex) {
