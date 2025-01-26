@@ -15,4 +15,6 @@ public interface LoanDTOtoObjectMapper {
     // Naming issue :)
     List<LoanInstallmentResponse> fromDTOForInstallment(List<LoanInstallmentResponseDTO> loanInstallmentResponseDTOList);
 
+    LoanResponse fromDTO(LoanResponseDTO loanResponseDTO);
+
 }

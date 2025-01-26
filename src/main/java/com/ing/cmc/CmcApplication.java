@@ -1,9 +1,5 @@
 package com.ing.cmc;
 
-import com.ing.cmc.entity.User;
-import com.ing.cmc.repository.UserRepository;
-import com.ing.cmc.service.user.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

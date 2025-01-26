@@ -13,9 +13,11 @@ import com.ing.cmc.service.authorization.AuthorizationService;
 import com.ing.cmc.service.loan.request.LoanCreateRequestDTO;
 import com.ing.cmc.service.loan.request.LoanInstallmentListRequestDTO;
 import com.ing.cmc.service.loan.request.LoanListRequestDTO;
+import com.ing.cmc.service.loan.request.LoanPayRequestDTO;
 import com.ing.cmc.service.loan.response.LoanInstallmentResponseDTO;
 import com.ing.cmc.service.loan.response.LoanResponseDTO;
 import com.ing.cmc.service.message.MessageService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,7 @@ public class LoanService {
     // Message codes
     private static final String MSG_ID_CANNOT_BE_NULL = "id.cannot.be.null";
     private static final String MSG_NO_LOAN_FOR_CUSTOMER = "no.loan.for.customer";
+    private static final String MSG_LOAN_NOT_FOUND = "loan.not.found"; // todo
     // Services
     private final AuthenticationService authenticationService;
     private final AuthorizationService authorizationService;
@@ -62,10 +65,10 @@ public class LoanService {
      * @param LoanCreateRequestDTO.amount               The principal amount of the loan.
      * @param LoanCreateRequestDTO.interestRate         The interest rate for the loan.
      * @param LoanCreateRequestDTO.numberOfInstallments The number of installments for repayment.
-     * @return The created Loan object.
+     * @return LoanResponseDTO after the created Loan object has been converted to.
      */
     @Transactional
-    public void createLoan(LoanCreateRequestDTO loanCreateRequestDTO) {
+    public LoanResponseDTO createLoan(LoanCreateRequestDTO loanCreateRequestDTO) {
         Customer customer = customerRepository.findById(loanCreateRequestDTO.getCustomerId()).orElseThrow(() -> new RuntimeException("Customer not found"));
 
         // Check if the number of installments is valid
@@ -118,7 +121,7 @@ public class LoanService {
             dueDate = dueDate.plusMonths(1);
         }
         loanInstallmentRepository.saveAll(installments);
-        //return loan;
+        return convertLoanToLoanResponseDTO(loan);
     }
 
     public List<LoanResponseDTO> listLoans(LoanListRequestDTO loanListRequestDTO) throws InvalidRequestException {
@@ -197,21 +200,19 @@ public class LoanService {
      * A result is returned to inform how many installments were paid, the total amount spent, and if the loan is paid completely.
      * Necessary updates are done in customer, loan, and installment tables.
      *
-     * @param loanId The ID of the loan to be paid.
-     * @param amount The amount of money sent to pay the installments.
+     * @param LoanPayRequestDTO.loanId The ID of the loan to be paid.
+     * @param LoanPayRequestDTO.       amount The amount of money sent to pay the installments.
      * @return A PaymentResult containing the details of the payment process.
      */
     @Transactional
-    public void payLoan(Long loanId, BigDecimal amount) {
-        Loan loan = loanRepository.findById(loanId).orElseThrow(() -> new RuntimeException("Loan not found"));
-
+    public List<LoanInstallmentResponseDTO> payLoan(LoanPayRequestDTO loanPayRequestDTO) {
+        Loan loan = loanRepository.findById(loanPayRequestDTO.getLoanId()).orElseThrow(() -> new EntityNotFoundException("Loan not found"));
         LocalDate currentDate = LocalDate.now();
         LocalDate maxDate = currentDate.plusMonths(3);
-
         List<LoanInstallment> installments = loanInstallmentRepository.findByLoanAndDueDateLessThanEqualAndIsPaidFalseOrderByDueDate(loan, maxDate);
-
         int paidInstallments = 0;
         BigDecimal totalPaid = BigDecimal.ZERO;
+        BigDecimal amount = loanPayRequestDTO.getAmount();
 
         for (LoanInstallment installment : installments) {
             if (amount.compareTo(installment.getAmount()) >= 0) {
@@ -231,9 +232,13 @@ public class LoanService {
                 break;
             }
         }
-
         loanRepository.save(loan);
 
-        //return new PaymentResult(paidInstallments, totalPaid, loan.isPaid());
+        List<LoanInstallment> loanInstallmentList = loanInstallmentRepository.findByLoanId(loan.getId());
+        List<LoanInstallmentResponseDTO> loanInstallmentResponseDTOList = new ArrayList<>();
+        for (LoanInstallment loanInstallment : loanInstallmentList) {
+            loanInstallmentResponseDTOList.add(convertLoanInstallmentToLoanInstallmentResponseDTO(loanInstallment));
+        }
+        return loanInstallmentResponseDTOList;
     }
 }

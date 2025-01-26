@@ -62,10 +62,10 @@ public class UserService {
                     .email(userCreateRequestDTO.getEmail())
                     .username(userCreateRequestDTO.getUsername())
                     .password(this.passwordEncoder.encode(userCreateRequestDTO.getPassword()))
-                    .roles(new ArrayList<>(Collections.singletonList(RoleEnum.ADMIN.toString())))
+                    .roles(new ArrayList<>(Collections.singletonList(RoleEnum.STANDARD.toString())))
                     .build();
             userRepository.save(user);
-            String token = authenticationService.generateToken(user, RoleEnum.ADMIN.toString());
+            String token = authenticationService.generateToken(user, RoleEnum.STANDARD.toString());
             log.info("token => " + token);
         } catch (Exception exception) {
             ExceptionLogger.log(exception);

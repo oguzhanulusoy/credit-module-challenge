@@ -1,14 +1,14 @@
 package com.ing.cmc;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import com.ing.cmc.common.exception.InvalidRequestException;
+import com.ing.cmc.entity.Customer;
+import com.ing.cmc.repository.CustomerRepository;
 import com.ing.cmc.service.customer.CustomerService;
+import com.ing.cmc.service.customer.request.CustomerCreateRequestDTO;
+import com.ing.cmc.service.customer.request.CustomerUpdateRequestDTO;
+import com.ing.cmc.service.customer.response.CustomerResponseDTO;
+import com.ing.cmc.service.message.MessageService;
+import com.ing.cmc.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,18 +17,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ing.cmc.common.exception.InvalidRequestException;
-import com.ing.cmc.entity.Customer;
-import com.ing.cmc.repository.CustomerRepository;
-import com.ing.cmc.service.authentication.AuthenticationService;
-import com.ing.cmc.service.authorization.AuthorizationService;
-import com.ing.cmc.service.customer.request.CustomerCreateRequestDTO;
-import com.ing.cmc.service.customer.request.CustomerUpdateRequestDTO;
-import com.ing.cmc.service.customer.response.CustomerResponseDTO;
-import com.ing.cmc.service.message.MessageService;
-import com.ing.cmc.service.user.UserService;
-import com.ing.cmc.service.user.response.UserResponseDTO;
-import jakarta.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -74,20 +69,21 @@ public class CustomerServiceTest {
         customerUpdateRequestDTO.setCreditLimit(BigDecimal.valueOf(10000));
         customerUpdateRequestDTO.setUsedCreditLimit(BigDecimal.valueOf(1000));
     }
-/*
-    @Test
-    void testCreateCustomer_Success() throws InvalidRequestException {
-        when(customerRepository.existsByUserId(customerCreateRequestDTO.getUserId())).thenReturn(false);
-        when(userService.getUser(customerCreateRequestDTO.getUserId())).thenReturn(new UserResponseDTO());
-        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
 
-        CustomerResponseDTO response = customerService.createCustomer(customerCreateRequestDTO);
+    /*
+        @Test
+        void testCreateCustomer_Success() throws InvalidRequestException {
+            when(customerRepository.existsByUserId(customerCreateRequestDTO.getUserId())).thenReturn(false);
+            when(userService.getUser(customerCreateRequestDTO.getUserId())).thenReturn(new UserResponseDTO());
+            when(customerRepository.save(any(Customer.class))).thenReturn(customer);
 
-        assertNotNull(response);
-        assertEquals(customer.getName(), response.getName());
-        verify(customerRepository, times(1)).save(any(Customer.class));
-    }
-*/
+            CustomerResponseDTO response = customerService.createCustomer(customerCreateRequestDTO);
+
+            assertNotNull(response);
+            assertEquals(customer.getName(), response.getName());
+            verify(customerRepository, times(1)).save(any(Customer.class));
+        }
+    */
     @Test
     void testCreateCustomer_AlreadyExists() {
         when(customerRepository.existsByUserId(customerCreateRequestDTO.getUserId())).thenReturn(true);

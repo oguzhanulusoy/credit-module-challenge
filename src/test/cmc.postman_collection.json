@@ -1,1209 +1,1209 @@
 {
-	"info": {
-		"_postman_id": "ee6a0fd9-c284-40d0-8dbf-418ac58fd176",
-		"name": "cmc",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35339342"
-	},
-	"item": [
-		{
-			"name": "user",
-			"item": [
-				{
-					"name": "flow",
-					"item": [
-						{
-							"name": "Create (user1)",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": "tr"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"{{user1_username}}\",\r\n    \"password\": \"{{user1_password}}\",\r\n    \"email\": \"{{user1_email}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/create",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"create"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Auth (user1)",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const responseBody = pm.response.json();\r",
-											"pm.collectionVariables.set('user1_token', responseBody.data.token);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"{{user1_username}}\",\r\n    \"password\": \"{{user1_password}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/auth",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"auth"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create (user2)",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"{{user2_username}}\",\r\n    \"password\": \"{{user2_password}}\",\r\n    \"email\": \"{{user2_email}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/create",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"create"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Auth (user2)",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const responseBody = pm.response.json();\r",
-											"pm.collectionVariables.set('user2_token', responseBody.data.token);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"{{user2_username}}\",\r\n    \"password\": \"{{user2_password}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/auth",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"auth"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user1_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"url": {
-									"raw": "{{host}}:{{port}}/user/list",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"list"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update (user1 - username)",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user1_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user1_id}}\",\r\n    \"username\": \"{{user1_username_update}}\",\r\n    \"email\": \"{{user1_email}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/update",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"update"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Auth (user1)",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const responseBody = pm.response.json();\r",
-											"pm.collectionVariables.set('user1_token', responseBody.data.token);\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"{{user1_username_update}}\",\r\n    \"password\": \"{{user1_password}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/auth",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"auth"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get (user1)",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user1_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": {{user1_id}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/get",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"get"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update (user2 - email)",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user2_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user2_id}}\",\r\n    \"username\": \"{{user2_username}}\",\r\n    \"email\": \"{{user2_email_update}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/update",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"update"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get (user2)",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user1_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user2_id}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/get",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"get"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Set role (user2 - admin)",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user1_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user2_id}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/set-role",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"set-role"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete (user1)",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user2_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user1_id}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/delete-logical",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"delete-logical"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user1_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"url": {
-									"raw": "{{host}}:{{port}}/user/list",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"list"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete (user1)",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user2_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user1_id}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/delete-hard",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"delete-hard"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete (user2)",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{user2_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept-Language",
-										"value": ""
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{user2_id}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}:{{port}}/user/delete-hard",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"user",
-										"delete-hard"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Create",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"tc_user2\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"user2@example.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/user/create",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"user",
-								"create"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"url": {
-							"raw": "{{host}}:{{port}}/user/list",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"user",
-								"list"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "loan",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{user1_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"customerId\": 1,\r\n    \"amount\": 1000,\r\n    \"interestRate\": 0.2,\r\n    \"numberOfInstallment\": 6\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/loan/create",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"loan",
-								"create"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{user1_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"customerId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/loan/list",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"loan",
-								"list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List installments",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{user1_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"loanId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/loan/list-installments",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"loan",
-								"list-installments"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "customer",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{user1_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"{{customer1_name}}\",\r\n    \"surname\": \"{{customer1_surname}}\",\r\n    \"userId\": \"{{user2_id}}\",\r\n    \"creditLimit\": \"{{customer1_credit_limit}}\",\r\n    \"usedCreditLimit\": \"{{customer1_used_credit_limit}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/customer/create",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"customer",
-								"create"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{user1_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"url": {
-							"raw": "{{host}}:{{port}}/customer/list",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"customer",
-								"list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{user1_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept-Language",
-								"value": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"{{customer1_name}}\",\r\n    \"surname\": \"{{customer1_surname}}\",\r\n    \"creditLimit\": \"{{customer1_credit_limit_update}}\",\r\n    \"usedCreditLimit\": \"{{customer1_used_credit_limit}}\" \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/customer/update",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"customer",
-								"update"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "host",
-			"value": "localhost",
-			"type": "string"
-		},
-		{
-			"key": "port",
-			"value": "8080",
-			"type": "string"
-		},
-		{
-			"key": "user1_username",
-			"value": "user1_tc",
-			"type": "string"
-		},
-		{
-			"key": "user1_username_update",
-			"value": "user1_tc_update",
-			"type": "string"
-		},
-		{
-			"key": "user1_email",
-			"value": "user1@email.com",
-			"type": "string"
-		},
-		{
-			"key": "user1_email_update",
-			"value": "user1_update@email.com",
-			"type": "string"
-		},
-		{
-			"key": "user1_password",
-			"value": "password",
-			"type": "string"
-		},
-		{
-			"key": "user2_email",
-			"value": "user2@email.com",
-			"type": "string"
-		},
-		{
-			"key": "user2_email_update",
-			"value": "user2_update@email.com",
-			"type": "string"
-		},
-		{
-			"key": "user2_password",
-			"value": "password",
-			"type": "string"
-		},
-		{
-			"key": "user2_username",
-			"value": "user2_tc",
-			"type": "string"
-		},
-		{
-			"key": "user2_username_update",
-			"value": "user2_tc_update",
-			"type": "string"
-		},
-		{
-			"key": "user1_id",
-			"value": "1",
-			"type": "string"
-		},
-		{
-			"key": "user2_id",
-			"value": "2",
-			"type": "string"
-		},
-		{
-			"key": "user1_token",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90YyIsImlhdCI6MTczNzgxMjg5NSwiZXhwIjoxNzY5MzQ4ODk1fQ.mXbKLFUtOR7OjesgPfYRmZGZxR980Ip1v3JN2u9qTGw",
-			"type": "string"
-		},
-		{
-			"key": "user2_token",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMl90YyIsImlhdCI6MTczNzgxMjkyNSwiZXhwIjoxNzY5MzQ4OTI1fQ.dxu2Fr22XuHNz9oiRjEpgCb9tGPg6bnaQUgYsNIcq8Q",
-			"type": "string"
-		},
-		{
-			"key": "customer1_name",
-			"value": "customer1_name",
-			"type": "string"
-		},
-		{
-			"key": "customer1_surname",
-			"value": "customer1_surname",
-			"type": "string"
-		},
-		{
-			"key": "customer1_credit_limit",
-			"value": "10000",
-			"type": "string"
-		},
-		{
-			"key": "customer1_credit_limit_update",
-			"value": "20000",
-			"type": "string"
-		},
-		{
-			"key": "customer1_used_credit_limit",
-			"value": "1500",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "ee6a0fd9-c284-40d0-8dbf-418ac58fd176",
+    "name": "cmc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "35339342"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "flow",
+          "item": [
+            {
+              "name": "Create (user1)",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "tr"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"{{user1_username}}\",\r\n    \"password\": \"{{user1_password}}\",\r\n    \"email\": \"{{user1_email}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/create",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Auth (user1)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const responseBody = pm.response.json();\r",
+                      "pm.collectionVariables.set('user1_token', responseBody.data.token);\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"{{user1_username}}\",\r\n    \"password\": \"{{user1_password}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/auth",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "auth"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create (user2)",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"{{user2_username}}\",\r\n    \"password\": \"{{user2_password}}\",\r\n    \"email\": \"{{user2_email}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/create",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Auth (user2)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const responseBody = pm.response.json();\r",
+                      "pm.collectionVariables.set('user2_token', responseBody.data.token);\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"{{user2_username}}\",\r\n    \"password\": \"{{user2_password}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/auth",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "auth"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user1_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/list",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "list"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update (user1 - username)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user1_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user1_id}}\",\r\n    \"username\": \"{{user1_username_update}}\",\r\n    \"email\": \"{{user1_email}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/update",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "update"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Auth (user1)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const responseBody = pm.response.json();\r",
+                      "pm.collectionVariables.set('user1_token', responseBody.data.token);\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"{{user1_username_update}}\",\r\n    \"password\": \"{{user1_password}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/auth",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "auth"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get (user1)",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user1_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": {{user1_id}}\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/get",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "get"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update (user2 - email)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user2_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user2_id}}\",\r\n    \"username\": \"{{user2_username}}\",\r\n    \"email\": \"{{user2_email_update}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/update",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "update"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get (user2)",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user1_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user2_id}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/get",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "get"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Set role (user2 - admin)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user1_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user2_id}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/set-role",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "set-role"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete (user1)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user2_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user1_id}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/delete-logical",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "delete-logical"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user1_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/list",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "list"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete (user1)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user2_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user1_id}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/delete-hard",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "delete-hard"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete (user2)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{user2_token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": \"{{user2_id}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}:{{port}}/user/delete-hard",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "port": "{{port}}",
+                  "path": [
+                    "user",
+                    "delete-hard"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"tc_user2\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"user2@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}:{{port}}/user/create",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "user",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "url": {
+              "raw": "{{host}}:{{port}}/user/list",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "user",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "loan",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user1_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerId\": 1,\r\n    \"amount\": 1000,\r\n    \"interestRate\": 0.2,\r\n    \"numberOfInstallment\": 6\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}:{{port}}/loan/create",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "loan",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user1_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}:{{port}}/loan/list",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "loan",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List installments",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user1_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"loanId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}:{{port}}/loan/list-installments",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "loan",
+                "list-installments"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "customer",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user1_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"{{customer1_name}}\",\r\n    \"surname\": \"{{customer1_surname}}\",\r\n    \"userId\": \"{{user2_id}}\",\r\n    \"creditLimit\": \"{{customer1_credit_limit}}\",\r\n    \"usedCreditLimit\": \"{{customer1_used_credit_limit}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}:{{port}}/customer/create",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "customer",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user1_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "url": {
+              "raw": "{{host}}:{{port}}/customer/list",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "customer",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{user1_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"{{customer1_name}}\",\r\n    \"surname\": \"{{customer1_surname}}\",\r\n    \"creditLimit\": \"{{customer1_credit_limit_update}}\",\r\n    \"usedCreditLimit\": \"{{customer1_used_credit_limit}}\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}:{{port}}/customer/update",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "customer",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost",
+      "type": "string"
+    },
+    {
+      "key": "port",
+      "value": "8080",
+      "type": "string"
+    },
+    {
+      "key": "user1_username",
+      "value": "user1_tc",
+      "type": "string"
+    },
+    {
+      "key": "user1_username_update",
+      "value": "user1_tc_update",
+      "type": "string"
+    },
+    {
+      "key": "user1_email",
+      "value": "user1@email.com",
+      "type": "string"
+    },
+    {
+      "key": "user1_email_update",
+      "value": "user1_update@email.com",
+      "type": "string"
+    },
+    {
+      "key": "user1_password",
+      "value": "password",
+      "type": "string"
+    },
+    {
+      "key": "user2_email",
+      "value": "user2@email.com",
+      "type": "string"
+    },
+    {
+      "key": "user2_email_update",
+      "value": "user2_update@email.com",
+      "type": "string"
+    },
+    {
+      "key": "user2_password",
+      "value": "password",
+      "type": "string"
+    },
+    {
+      "key": "user2_username",
+      "value": "user2_tc",
+      "type": "string"
+    },
+    {
+      "key": "user2_username_update",
+      "value": "user2_tc_update",
+      "type": "string"
+    },
+    {
+      "key": "user1_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "user2_id",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "user1_token",
+      "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMV90YyIsImlhdCI6MTczNzgxMjg5NSwiZXhwIjoxNzY5MzQ4ODk1fQ.mXbKLFUtOR7OjesgPfYRmZGZxR980Ip1v3JN2u9qTGw",
+      "type": "string"
+    },
+    {
+      "key": "user2_token",
+      "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ1c2VyMl90YyIsImlhdCI6MTczNzgxMjkyNSwiZXhwIjoxNzY5MzQ4OTI1fQ.dxu2Fr22XuHNz9oiRjEpgCb9tGPg6bnaQUgYsNIcq8Q",
+      "type": "string"
+    },
+    {
+      "key": "customer1_name",
+      "value": "customer1_name",
+      "type": "string"
+    },
+    {
+      "key": "customer1_surname",
+      "value": "customer1_surname",
+      "type": "string"
+    },
+    {
+      "key": "customer1_credit_limit",
+      "value": "10000",
+      "type": "string"
+    },
+    {
+      "key": "customer1_credit_limit_update",
+      "value": "20000",
+      "type": "string"
+    },
+    {
+      "key": "customer1_used_credit_limit",
+      "value": "1500",
+      "type": "string"
+    }
+  ]
 }
