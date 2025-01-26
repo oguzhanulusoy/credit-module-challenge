@@ -171,7 +171,6 @@ public class LoanService {
             ExceptionLogger.log(exception);
         }
         return null;
-
     }
 
     public LoanInstallmentResponseDTO convertLoanInstallmentToLoanInstallmentResponseDTO(LoanInstallment loanInstallment) {
@@ -241,4 +240,6 @@ public class LoanService {
         }
         return loanInstallmentResponseDTOList;
     }
+
+
 }
